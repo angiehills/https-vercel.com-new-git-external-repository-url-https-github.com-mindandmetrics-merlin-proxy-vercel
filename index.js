@@ -20,7 +20,7 @@ app.post("/", async (req, res) => {
         input: transcription,
       }
     );
-
+  
     console.log("🧙‍♂️ Merlin said:", merlinRes.data.response);  // ✅ LOG 2
 
     res.json({
