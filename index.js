@@ -12,15 +12,14 @@ app.post("/", async (req, res) => {
   console.log("📨 Received from Siri:", transcription);  // ✅ LOG 1
 
   try {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+    // No need to disable TLS anymore — we’re on trusted SSL now
     const merlinRes = await axios.post(
-      "https://agents.smythos.com/api/v1/agent/cm8dgabrtksagbkeh48r86khd/skill/merlin_voice",
+      "https://cm8dgabrtksagbkeh48r86khd.agent.a.smyth.ai/api/merlin_voice",
       {
-        input: transcription,
+        transcription,
       }
     );
-  
+
     console.log("🧙‍♂️ Merlin said:", merlinRes.data.response);  // ✅ LOG 2
 
     res.json({
@@ -38,5 +37,4 @@ app.post("/", async (req, res) => {
 app.listen(port, () => {
   console.log(`Merlin proxy listening on port ${port}`);
 });
-// Triggering a Vercel deploy
 
